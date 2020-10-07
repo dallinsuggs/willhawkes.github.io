@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.o">
-    <title>CIT 160 Template Document - Dallin Suggs</title>
+    <title>CIT 160 Program 4.1 - Dallin Suggs</title>
     <link rel="stylesheet" href="css/style.css"> <!--external css reference-->
 </head>
 
 <body>
     <header>
-        <h1>Week 3: Template</h1>
+        <h1>Week 4: Calculator</h1>
         <h2>Dallin Suggs</h2>
     </header>
     <main>
@@ -19,13 +19,25 @@
         <label>Enter Number Two: <input type="text" id="number2"></label>
         <label><button type="button" onclick="addNumbers()">Add Numbers</button></label>
         <hr>
-        <p>Output: <span id="output"></span></p>
+        <p id="output">Sum: </p>
     </main>
     <footer>
         &copy;2019 &bull; Dallin Suggs &bull; BYU-Idaho &bull; CIT 160
     </footer>
     <script>
-        
+        function addNumbers() {
+            // INPUT
+            let number1 = document.getElementById("number1").value;
+            let number2 = document.getElementById("number2").value;
+            // PROCESSING
+            // convert the input strings to floats with parseFloat
+            number1 = parseFloat(number1);
+            number2 = parseFloat(number2);
+            //add the two numbers and store in output variable
+            let sum = number1 + number2
+            // OUTPUT
+            document.getElementById("output").textContent = "Sum: " + sum + ".";
+        }
     </script>
 </body>
 <!--testcomment-->
