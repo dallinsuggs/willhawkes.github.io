@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.o">
+    <title>CIT 160 Footwear - Dallin Suggs</title>
+    <link rel="stylesheet" href="css/style.css"> <!--external css reference-->
+</head>
+
+<body>
+    <header>
+        <h1>Week 6: Footwear</h1>
+        <h2>Dallin Suggs</h2>
+    </header>
+    <main>
+        <h3>Footwear</h3>
+        <label for="weather-select">Choose the weather:</label>
+            <select name="Weather Select" id="weather">
+                <option value="" disabled selection>--Select the Weather--</option>
+                <option value="snow">snow</option>
+                <option value="rain">rain</option>
+                <option value="hot">hot</option>
+                <option value="unknown">unknown</option>
+            </select>
+        </label>
+        <label><button type="button" onclick="getShoes()">Get Shoes</button></label>
+        <hr>
+        <p><span id="output"></span></p>
+    </main>
+    <footer>
+        &copy;2020 &bull; Dallin Suggs &bull; BYU-Idaho &bull; CIT 160
+    </footer>
+    <script>
+        function getShoes() {
+            //Set variables and input weather from combo box
+            let shoes;
+            let weather = document.getElementById("weather").value;
+            //PROCESSING using if/else statements to determine appropriate shoe type
+            if (weather == "snow") {
+                shoes = "boots";
+            } else if (weather == "rain") {
+                shoes = "galoshes";
+            } else if (weather == "hot") {
+                shoes = "sandals";
+            } else if (weather == "unknown") {
+                shoes = "shoes";
+            }
+            //OUTPUT
+            document.getElementById("output").textContent = "You should wear " + shoes;
+        }
+    </script>
+</body>
+
+</html>

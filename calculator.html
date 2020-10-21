@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.o">
+    <title>CIT 160 Calculator - Dallin Suggs</title>
+    <link rel="stylesheet" href="css/style.css"> <!--external css reference-->
+</head>
+
+<body>
+    <header>
+        <h1>Week 6: Calculator</h1>
+        <h2>Dallin Suggs</h2>
+    </header>
+    <main>
+        <h3>Calculator</h3>
+        <label>Enter Number One: <input type="text" id="number1"></label>
+        <label>Enter Number Two: <input type="text" id="number2"></label>
+        <label>Enter an operator: <input type="text" id="operator"></label>
+        <label>Enter a solution: <input type="text" id="solution"></label>
+        <label><button type="button" onclick="calculate()">Add Numbers</button></label>
+        <hr>
+        <p>Output: <span id="output"></span></p>
+    </main>
+    <footer>
+        &copy;2020 &bull; Dallin Suggs &bull; BYU-Idaho &bull; CIT 160
+    </footer>
+    <script>
+        function calculate() {
+            // INPUT
+            let number1 = document.getElementById("number1").value;
+            let number2 = document.getElementById("number2").value;
+            let operator = document.getElementById("operator").value;
+            let solution = document.getElementById("solution").value;
+            // PROCESSING
+            // convert the input strings to floats with parseFloat
+            number1 = parseFloat(number1);
+            number2 = parseFloat(number2);
+            solution = parseFloat(solution);
+            //use switch statement to determine input arithmetic operator
+            let result;
+            switch (operator) {
+                case "+":
+                    result = number1 + number2;
+                    break
+                case "-":
+                    result = number1 - number2;
+                    break
+                case "*":
+                    result = number1 * number2;
+                    break
+                case "/":
+                    result = number1 / number2;
+                    break
+            }
+            // OUTPUT
+            if (solution == result) {
+                document.getElementById("output").textContent = "Correct! 🏆";
+            } else {
+                document.getElementById("output").textContent = "Incorrect 😢";
+            }
+        }
+    </script>
+</body>
+
+</html>

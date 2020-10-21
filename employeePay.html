@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.o">
+    <title>CIT 160 Employee Pay - Dallin Suggs</title>
+</head>
+
+<body>
+    <header>
+        <h1>Exam part 2 - Employee Pay</h1>
+        <h2>Dallin Suggs</h2>
+    </header>
+    <main>
+        <h3>Enter hours:</h3>
+        <label>Number of regular hours worked: <input type="text" id="regHours"></label>
+        <label>Number of overtime hours worked: <input type="text" id="overHours"></label>
+        <label><button type="button" onclick="calculatePay()">Calculate Pay</button></label>
+        <hr>
+        <p>Output: <span id="output"></span></p>
+    </main>
+    <footer>
+        &copy;2020 &bull; Dallin Suggs &bull; BYU-Idaho &bull; CIT 160
+    </footer>
+    <script>
+        function calculatePay() {
+            // INPUT and PAY VARIABLES
+            const regPay = 15.0;
+            const overPay = 22.5;
+            const taxRate = 0.85;
+            let regHours = document.getElementById("regHours").value;
+            let overHours = document.getElementById("overHours").value;
+            // PROCESSING
+            // convert the input strings to floats with parseFloat
+            regHours = parseFloat(regHours);
+            overHours = parseFloat(overHours);
+            //calculate the income by multiplying pay with hours, adding the two, and multiplying by tax variable
+            let income = ((regHours * regPay) + (overHours * overPay)) * taxRate;
+            // OUTPUT
+            document.getElementById("output").textContent = "Gross Income: $" + income.toFixed(2) + ".";
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.o">
+    <title>CIT 160 Cylinder Volume Calculator - Dallin Suggs</title>
+</head>
+
+<body>
+    <header>
+        <h1>Exam part 2 - Cylinder Volume Calculator</h1>
+        <h2>Dallin Suggs</h2>
+    </header>
+    <main>
+        <h3>Enter measurements of the cylinder:</h3>
+        <label>Radius of the cylinder: <input type="text" id="cylRadius"></label>
+        <label>Height of the cylinder: <input type="text" id="cylHeight"></label>
+        <label><button type="button" onclick="calculateVolume()">Calculate Volume</button></label>
+        <hr>
+        <p>Volume: <span id="output"></span></p>
+    </main>
+    <footer>
+        &copy;2020 &bull; Dallin Suggs &bull; BYU-Idaho &bull; CIT 160
+    </footer>
+    <script>
+        function calculateVolume() {
+            // INPUT and PI variable
+            const piValue = Math.PI;
+            let cylRadius = document.getElementById("cylRadius").value;
+            let cylHeight = document.getElementById("cylHeight").value;
+            // PROCESSING
+            // convert the input strings to floats with parseFloat
+            cylRadius = parseFloat(cylRadius);
+            cylHeight = parseFloat(cylHeight);
+            //calculate the volume by using the formula provided, volume = PI * r squared * height
+            let cylVolume = piValue * cylRadius**2 * cylHeight;
+            // OUTPUT
+            document.getElementById("output").textContent = Math.round(cylVolume);
+        }
+    </script>
+</body>
+</html>
