@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.o">
+    <title>CIT 160 Discount Calculator - Dallin Suggs</title>
+    <link rel="stylesheet" href="css/style.css"> <!--external css reference-->
+</head>
+
+<body>
+    <header>
+        <h1>Week 7: Discount Calculator</h1>
+        <h2>Dallin Suggs</h2>
+    </header>
+    <main>
+        <h3>Enter Subtotal Amount</h3>
+        <label>Please enter dollar amount: <input type="text" id="subtotal"></label>
+        <label><button type="button" onclick="calculateDiscount()">Calculate Discount</button></label>
+        <hr>
+        <p>Final Total with Tax (6%): <span id="output"></span></p>
+    </main>
+    <footer>
+        &copy;2020 &bull; Dallin Suggs &bull; BYU-Idaho &bull; CIT 160
+    </footer>
+    <script>
+        function calculateDiscount() {
+            // INPUT take down variables and put them in let variables
+            let subtotal = document.getElementById("subtotal").value;
+            let dayOfWeek = new Date().getDay();
+            // PROCESSING
+            // convert the input string to float with parseFloat
+            subtotal = parseFloat(subtotal);
+            // decide if discount applicable, and if so, calculate it
+            if ((dayOfWeek == 2 || dayOfWeek == 3) && subtotal > 50) {
+                subtotal = subtotal * 0.9;
+            }
+            //compute total with 6% tax
+            let total = subtotal * 1.06;
+            // OUTPUT
+            document.getElementById("output").textContent = total.toFixed(2);
+        }
+    </script>
+</body>
+
+</html>
