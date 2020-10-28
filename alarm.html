@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.o">
+    <title>CIT 160 Alarm - Dallin Suggs</title>
+    <link rel="stylesheet" href="css/style.css"> <!--external css reference-->
+</head>
+
+<body>
+    <header>
+        <h1>Week 7: Alarm</h1>
+        <h2>Dallin Suggs</h2>
+    </header>
+    <main>
+        <h3>Should you sleep in?</h3>
+        <label><button type="button" onclick="setAlarm()">Set alarm</button></label>
+        <hr>
+        <p>Answer: <span id="output"></span></p>
+    </main>
+    <footer>
+        &copy;2020 &bull; Dallin Suggs &bull; BYU-Idaho &bull; CIT 160
+    </footer>
+    <script>
+        function setAlarm() {
+            // INPUT (getting info from computer clock)
+            let now = new Date();
+            let month = now.getMonth();
+            let dayOfMonth = now.getDate();
+            let dayOfWeek = now.getDay();
+            // PROCESSING
+            // decide if sleepin day or getup day
+            let alarmMessage;
+            if ((dayOfMonth == 1 && month == 0) || (dayOfMonth == 4 && month == 6) || (dayOfMonth == 25 && month == 11) || 
+            dayOfWeek == 0 || dayOfWeek == 6) {
+                alarmMessage = "Sleep in.";
+            }
+            else {
+                alarmMessage = "Get up!";
+            }
+            // OUTPUT
+            document.getElementById("output").textContent = alarmMessage;
+        }
+    </script>
+</body>
+
+</html>
