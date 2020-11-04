@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.o">
+    <title>CIT 160 Sum of Odd Numbers - Dallin Suggs</title>
+    <link rel="stylesheet" href="css/style.css"> <!--external css reference-->
+</head>
+
+<body>
+    <header>
+        <h1>Week 8: Sum of Odd Numbers</h1>
+        <h2>Dallin Suggs</h2>
+    </header>
+    <main>
+        <h3>We will add up odd numbers between 1 and...</h3>
+        <label>Please enter a number: <input type="text" id="number"></label>
+        <label><button type="button" onclick="addNumbers()">Add Numbers</button></label>
+        <hr>
+        <p>Sum of odd numbers: <span id="output"></span></p>
+    </main>
+    <footer>
+        &copy;2020 &bull; Dallin Suggs &bull; BYU-Idaho &bull; CIT 160
+    </footer>
+    <script>
+        function addNumbers() {
+            // INPUT
+            let number = document.getElementById("number").value;
+            let sum = 0;
+            // PROCESSING
+            // convert the input strings to floats with parseFloat
+            number = parseFloat(number);
+            //for loop to iterate through range and add up odd numbers
+            for (i = 1; i <= number; i++) {
+                if (i % 2 != 0) {
+                    sum += i;
+                }
+                else {
+                    continue
+                }
+            }
+            // OUTPUT
+            document.getElementById("output").textContent = sum;
+        }
+    </script>
+</body>
+
+</html>
