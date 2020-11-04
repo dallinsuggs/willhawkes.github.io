@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.o">
+    <title>CIT 160 Fixed Loop Structures - Dallin Suggs</title>
+    <link rel="stylesheet" href="css/style.css"> <!--external css reference-->
+</head>
+
+<body>
+    <header>
+        <h1>Week 8: Fixed Loop Structures</h1>
+        <h2>Dallin Suggs</h2>
+    </header>
+    <main>
+        <p> Behold! </p>
+        <hr>
+        <div id=display1></div>
+        <div id=display2></div>
+        <div id=display3></div>
+        <div id=display4></div>
+    </main>
+    <footer>
+        &copy;2020 &bull; Dallin Suggs &bull; BYU-Idaho &bull; CIT 160
+    </footer>
+    <script>
+        //OUTPUT1
+        let output1 = "";
+        let i = 0;
+        while (i < 2) {
+            output1 += `Part 1:${i}<br>`;
+            i++
+        }
+        document.getElementById('display1').innerHTML = output1;
+
+        //OUTPUT2
+        var output2 = "";
+        for (let j = 0; j < 3; j++) {
+            if (j !== 2) {
+                output2 += `Part 2:${j}, `;
+            }
+            else {
+                output2 += `Part 2:${j}`;
+            }  
+        }
+        document.getElementById('display2').textContent = output2;
+
+        //OUTPUT3
+        let output3 = "";
+        for (let k = 0; k < 4; k++) {
+            output3 += k + " ";
+        }
+        document.getElementById('display3').textContent = output3;
+        
+        //OUTPUT4
+        let balance = 1000;
+        const rate = .10;
+        let n = 29;
+        for (let s = 0; s < n; s++) {
+            interest = balance * rate;
+            balance += interest;
+        }
+        document.getElementById('display4').textContent = balance.toFixed(2);
+
+    </script>
+</body>
+
+</html>
