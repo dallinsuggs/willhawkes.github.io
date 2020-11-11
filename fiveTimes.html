@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.o">
+    <title>CIT 160 Times Tables - Dallin Suggs</title>
+    <link rel="stylesheet" href="css/style.css"> <!--external css reference-->
+</head>
+
+<body>
+    <header>
+        <h1>Week 9: Times Tables</h1>
+        <h2>Dallin Suggs</h2>
+    </header>
+    <main>
+        <h3>Fives Times Tables:</h3>
+        <div><span id="output"></span></div>
+    </main>
+    <footer>
+        &copy;2020 &bull; Dallin Suggs &bull; BYU-Idaho &bull; CIT 160
+    </footer>
+    <script>
+        // LOOP
+        let output = "";
+        let n = 12;
+        let i = 1;
+        while (i <= 12) {
+            output += "5 x " + i + " = " + 5 * i + "<br>";
+            i++;
+        }
+        //Send output to HTML
+        document.getElementById("output").innerHTML = output;
+    </script>
+</body>
+
+</html>
