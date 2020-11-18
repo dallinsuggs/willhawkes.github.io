@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.o">
+    <title>CIT 160 Wind Chill - Dallin Suggs</title>
+    <link rel="stylesheet" href="css/style.css"> <!--external css reference-->
+</head>
+
+<!--BODY-->
+<body>
+    <!--HEADER-->
+    <header>
+        <h1>Week 10: Wind Chill</h1>
+        <h2>Dallin Suggs</h2>
+    </header>
+    <!--MAIN-->
+    <main>
+        <h3>Calculate Wind Chill Factor</h3>
+        <label>Temperature: <input type="text" id="temperature"></label>
+        <label>Wind Speed: <input type="text" id="windspeed"></label>
+        <label><button type="button" onclick="doInputOutput()">Add Numbers</button></label>
+        <hr>
+        <div id="output">The wind chill factor is: </div>
+    </main>
+    <!--FOOTER-->
+    <footer>
+        &copy;2020 &bull; Dallin Suggs &bull; BYU-Idaho &bull; CIT 160
+    </footer>
+    <script>
+        function doInputOutput() {
+            // INPUT
+            let temperature = parseFloat(document.getElementById("temperature").value);
+            let windspeed = parseFloat(document.getElementById("windspeed").value);
+            let windchill = "";
+
+            // PROCESSING
+            if (temperature <= 50 && windspeed >= 3) {
+                windchill = windChill(temperature, windspeed);
+            }
+    
+            // OUTPUT
+            document.getElementById("output").innerHTML = "The wind chill factor is: " + windchill;
+        }
+
+        function windChill(tempF, speed) {
+            // EQUATION: f = 35.74 + 0.6215 t - 35.75 s^0.16 + 0.4275 t s^0.16
+
+            // PROCESSING
+            let windChillFactor = 35.74 + (0.6215 * tempF) - (35.75 * (speed)^0.16) + (0.4275 * tempF * (speed)^0.16);
+
+            // RETURN
+            return windChillFactor;
+        }
+    </script>
+</body>
+
+</html>

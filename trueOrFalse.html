@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.o">
-    <title>CIT 160 Program 4.1 - Dallin Suggs</title>
+    <title>CIT 160 Exam 2.2: True or False - Dallin Suggs</title>
     <link rel="stylesheet" href="css/style.css"> <!--external css reference-->
 </head>
 
@@ -12,33 +12,34 @@
 <body>
     <!--HEADER-->
     <header>
-        <h1>Week 4: Calculator</h1>
+        <h1>Exam 2.2: True or False Calculator</h1>
         <h2>Dallin Suggs</h2>
     </header>
     <!--MAIN-->
     <main>
-        <h3>Add Two Numbers</h3>
+        <h3>Enter Two Numbers</h3>
         <label>Enter Number One: <input type="text" id="number1"></label>
         <label>Enter Number Two: <input type="text" id="number2"></label>
-        <label><button type="button" onclick="addNumbers()">Add Numbers</button></label>
+        <label><button type="button" onclick="calculateTruth()">Calculate Truth</button></label>
         <hr>
-        <p id="output">Sum: </p>
+        <div id="output">Result: </div>
     </main>
     <!--FOOTER-->
     <footer>
         &copy;2020 &bull; Dallin Suggs &bull; BYU-Idaho &bull; CIT 160
     </footer>
     <script>
-        function addNumbers() {
-            // INPUT
+        function calculateTruth() {
+            // INPUT turn input strings to floats
             let number1 = parseFloat(document.getElementById("number1").value);
             let number2 = parseFloat(document.getElementById("number2").value);
+            let output = "";
 
             // PROCESSING
-            let sum = number1 + number2;
+            output = (number1 > 5 && number2 > 5 || number1 + number2 > 20);
     
             // OUTPUT
-            document.getElementById("output").innerHTML = "Sum: " + sum + ".";
+            document.getElementById("output").innerHTML = "Result: " + output;
         }
     </script>
 </body>
