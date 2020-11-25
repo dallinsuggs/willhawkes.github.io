@@ -46,7 +46,7 @@
             document.getElementById("output").innerHTML = "$" + payment;
         }
         function computePayment(principal, apr, years, nper) {
-            //Calculate future value with given parameters
+            //Calculate payment with given parameters
             return ((principal * (apr / nper)) / (1 - Math.pow((1 + (apr / nper)), -(years * nper)))).toFixed(2);
         }
         function doBalance() {
@@ -64,7 +64,7 @@
             document.getElementById("output2").innerHTML = "$" + balance;
         }
         function computeBalance(principal, apr, years, nper, payments) {
-            //Calculate future value with given parameters
+            //Calculate balance with given parameters
             let payment = computePayment(principal, apr, years, nper);
             return ((principal * Math.pow((1 + (apr / nper)), payments)) - ((payment * (Math.pow((1 + (apr / nper)), payments) - 1)) / (apr / nper))).toFixed(2);
         }
