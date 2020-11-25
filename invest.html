@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.o">
+    <title>CIT 160 Invest - Dallin Suggs</title>
+    <link rel="stylesheet" href="css/style.css"> <!--external css reference-->
+</head>
+
+<!--BODY-->
+<body>
+    <!--HEADER-->
+    <header>
+        <h1>Week 11: Invest</h1>
+        <h2>Dallin Suggs</h2>
+    </header>
+    <!--MAIN-->
+    <main>
+        <label>Amount invested (principal): <input type="text" id="principal"></label>
+        <label>Amount rate (example: 0.8): <input type="text" id="apr""></label>
+        <label>Number of years: <input type="text" id="years"></label>
+        <label>Periods per year: <input type="text" id="nper"></label>
+        <label><button type="button" onclick="doFV()">Computer future value</button></label>
+        <p id="output"></p>
+    </main>
+    <!--FOOTER-->
+    <footer>
+        &copy;2020 &bull; Dallin Suggs &bull; BYU-Idaho &bull; CIT 160
+    </footer>
+    <script>
+        function doFV() {
+            // INPUT
+            let principal = parseFloat(document.getElementById("principal").value);
+            let apr = parseFloat(document.getElementById("apr").value);
+            let years = parseFloat(document.getElementById("years").value);
+            let nper = parseFloat(document.getElementById("nper").value);
+
+            // PROCESSING
+            let fv = computeFutureValue(principal, apr, years, nper);
+    
+            // OUTPUT
+            document.getElementById("output").innerHTML = "$" + fv;
+        }
+        function computeFutureValue(principal, apr, years, nper) {
+            //Calculate future value with given parameters
+            return (principal * Math.pow((1 + (apr / nper)), (years * nper))).toFixed(2);
+        }
+    </script>
+</body>
+
+</html>
