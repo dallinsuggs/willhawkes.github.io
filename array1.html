@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.o">
+    <title>CIT 160 Arrays 1 - Dallin Suggs</title>
+    <link rel="stylesheet" href="css/style.css"> <!--external css reference-->
+</head>
+
+<!--BODY-->
+<body>
+    <!--HEADER-->
+    <header>
+        <h1>Week 12: Arrays 1</h1>
+        <h2>Dallin Suggs</h2>
+    </header>
+    <!--MAIN-->
+    <main>
+        <h3>Array Machine</h3>
+        <label><button type="button" onclick="test()">Click me:D</button></label>
+        <hr>
+        <p id="output"></p>
+    </main>
+    <!--FOOTER-->
+    <footer>
+        &copy;2020 &bull; Dallin Suggs &bull; BYU-Idaho &bull; CIT 160
+    </footer>
+    <script>
+        /* Defining Table
+        * Input: no user input
+        * Processing: Test the addEnds and getMiddle functions by calling them.
+        * Output: The values returned from the addEnds and getMiddle functions.
+        */
+        function test() {
+            let list1 = [ 17, 8, 9, 5, 20 ];
+            let list2 = [ 12, 4, 8, 15, 17, 5, 20, 11 ];
+
+            // Test the addEnds function by calling it two times.
+            let sum1 = addEnds(list1);
+            let sum2 = addEnds(list2);
+
+            // Test the getMiddle function by calling it two times.
+            let mid1 = getMiddle(list1);
+            let mid2 = getMiddle(list2);
+
+            // Build a string to display to the user.
+            let output =
+                    sum1 + '<br>' +
+                    sum2 + '<br>' +
+                    mid1 + '<br>' +
+                    mid2;
+
+            // Display the output string for the user to see.
+            document.getElementById('output').innerHTML = output;
+        }
+
+        function addEnds(list) {
+            return list[0] + list[list.length-1];
+        }
+
+        function getMiddle(list) {
+            if (list.length % 2 == 0) {
+                let middleAvg = (list[list.length - 1 - (list.length / 2)] + list[list.length - (list.length / 2)]) / 2;
+                return middleAvg;
+            }
+            else if (list.length % 2 == 1) {
+                return list[list.length - 1 - ((list.length - 1)/ 2)];
+            }
+        }
+    </script>
+</body>
+
+</html>
