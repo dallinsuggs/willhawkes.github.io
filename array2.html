@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.o">
+    <title>CIT 160 Array2 - Dallin Suggs</title>
+    <link rel="stylesheet" href="css/style.css"> <!--external css reference-->
+</head>
+
+<!--BODY-->
+<body>
+    <!--HEADER-->
+    <header>
+        <h1>Week 13: Array2</h1>
+        <h2>Dallin Suggs</h2>
+    </header>
+    <!--MAIN-->
+    <main>
+        <label><button type="button" onclick="test()">Click me bro;)</button></label>
+        <hr>
+        <p id="output"></p>
+    </main>
+    <!--FOOTER-->
+    <footer>
+        &copy;2020 &bull; Dallin Suggs &bull; BYU-Idaho &bull; CIT 160
+    </footer>
+    <script>
+        /* Defining Table
+        * Input: no user input
+        * Processing: Test the countEvens and multiply functions by calling them.
+        * Output: The values returned from the countEvens and multiply functions.
+        */
+        function test() {
+            let list1 = [ 17, 8, 9, 5, 20 ];
+            let list2 = [ 12, 4, 8, 15, 17, 5, 20, 11 ];
+
+            // Test the countEvens function by calling it two times.
+            let count1 = countEvens(list1);
+            let count2 = countEvens(list2);
+
+            // Test the multiply function by calling it two times.
+            let mult1 = multiply(list1, 3);
+            let mult2 = multiply(list2, 2);
+
+            // Build a string to display to the user.
+            let output =
+                    count1 + '<br>' +
+                    count2 + '<br>' +
+                    mult1 + '<br>' +
+                    mult2;
+
+            // Display the output string for the user to see.
+            document.getElementById('output').innerHTML = output;
+        }
+        //countEvens function
+        function countEvens(list) {
+            let numEvens = 0;
+
+            //for loop to iterate through each item in the array
+            for (let i = 0; i < list.length; i++) {
+                if (list[i] % 2 == 0) {
+                    numEvens += 1;
+                }
+            }
+            return numEvens;
+        }
+
+        //multiply function
+        function multiply(list, multiplier) {
+            let newArray = [];
+
+            //for loop to iterate through array contents and do math
+            for (let i = 0; i < list.length; i++) {
+                list[i] = list[i] * multiplier;
+            }
+            return list.join(', ');
+        }
+    </script>
+</body>
+
+</html>
