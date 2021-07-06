@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Dallin Suggs">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Online Store</title>
+    
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+  </head>
+
+  <body>
+    <header>
+
+      <div class="topnav">
+        <h1>Online Store</h1>
+      </div>
+
+    </header>
+    
+    <!--Our main content, the form to calculate monthly payments-->
+
+    <div class="main">
+      <h1>Please enter information here to make a purchase</h1>
+      <p id="errorMessage"><br></p>
+
+      <form id="onlineStore" onsubmit="return false">
+
+        <!--First name-->
+
+        <label for="first_name">First Name:</label><br>
+        <input onblur="checkInput('first_name')" type="text" id="first_name" name="first_name" min="0.00" 
+          placeholder="John" required><br><br>
+
+        <!--Last name-->
+
+        <label for="last_name">Last Name:</label><br>
+        <input onblur="checkInput('last_name')" type="text" id="last_name" name="last_name" 
+          placeholder="Doe" required><br><br>
+
+        <!--Address-->
+
+        <label for="address">Street address (include street address, state, city and zip):</label><br>
+        <textarea onblur="checkInput('address')" id="address" name="address" rows="3" cols="40" 
+          placeholder="123 4th street &#10;Provo, UT 12345"></textarea><br><br>
+        
+        <!--Phone number-->
+
+        <label for="phone">Phone Number:</label><br>
+        <input onblur="checkPhone()" type="text" id="phone" name="phone" 
+          placeholder="123-456-7890" required><br><br>
+
+        <!--Products-->
+
+        <p>Please choose any items you would like to purchase:</p>
+        <input onclick="calculate()" type="checkbox" id="item_0" name="item_0" value="Bike">
+        <label for="item_0"> Bike - $1000</label><br>
+        <input onclick="calculate()" type="checkbox" id="item_1" name="item_1" value="Car">
+        <label for="item_1"> Car - $18000</label><br>
+        <input onclick="calculate()" type="checkbox" id="item_2" name="item_2" value="Boat">
+        <label for="item_2"> Boat - $14000</label><br>
+        <input onclick="calculate()" type="checkbox" id="item_3" name="item_3" value="Plane">
+        <label for="item_3"> Plane - $50000</label><br><br>
+
+        <!--Order Total-->
+
+        <p>Order Total: $<span id="total" name="total">0</span></p><br>
+
+        <!--Type of credit card-->
+
+        <input type="radio" id="visa" name="card" value="visa">
+        <label for="visa">Visa</label><br>
+        <input type="radio" id="mastercard" name="card" value="mastercard">
+        <label for="mastercard">MasterCard</label><br>
+        <input type="radio" id="amex" name="card" value="amex">
+        <label for="amex">American Express</label><br><br>
+
+        <!--Credit card number and exp date-->
+
+        <label for="credit_card">Credit Card Number:</label><br>
+        <input onblur="checkCard()" type="text" id="credit_card" name="credit_card" 
+          placeholder="1234 1234 1234 1234" required><br><br>
+        <label for="exp_date">Expiration Date:</label><br>
+        <input onblur="checkDate()" type="text" id="exp_date" name="exp_date" 
+          placeholder="01/2022" required><br><br>
+
+        <!--Submit and Reset buttons-->
+
+        <button type="submit" name="validate">Submit</button>
+        <input onclick="resetMessages()" type="reset" name="reset">
+        
+      </form> 
+    </div>
+
+    <footer>
+      <p>Author: Dallin Suggs</p>
+      <p><a href="mailto:dallin.suggs@gmail.com">dallin.suggs@gmail.com</a></p>
+    </footer>
+    
+    <script>
+
+      // Function to reset error message and payment when the reset button is pressed
+
+      function resetMessages() {
+        document.getElementById("errorMessage").innerHTML = "<br>";
+        document.getElementById("payment").innerHTML = "";
+        document.getElementById("first_name").focus();
+      }
+
+      // Check text inputs to make sure fields are not empty
+
+      function checkInput(inputID) {
+        let userInput = document.getElementById(inputID).value;
+        
+        if (userInput.length == 0) {
+          document.getElementById("errorMessage").innerHTML = "Please fill out the highlighted field(s).";
+          document.getElementById(inputID).focus();
+          document.getElementById(inputID).style.backgroundColor = "salmon";
+        } else {
+          document.getElementById("errorMessage").innerHTML = "<br>";
+          document.getElementById(inputID).style.backgroundColor = "white";
+        }
+      }
+
+      // Function to check phone number
+
+      function checkPhone() {
+        let phone = document.getElementById("phone").value;
+        let regExp = /\d{3}-\d{3}-\d{4}/;
+
+        let test = regExp.test(phone);
+
+        if (!test || phone.length == 0) {
+          document.getElementById("errorMessage").innerHTML = 
+            "Please enter phone number with the following format: 123-456-7890.";
+          document.getElementById("phone").focus();
+          document.getElementById("phone").style.backgroundColor = "salmon";
+        } else {
+          document.getElementById("errorMessage").innerHTML = "<br>";
+          document.getElementById("phone").style.backgroundColor = "white";
+        }
+      }
+
+      // Function to check card number
+
+      function checkCard() {
+        let card = document.getElementById("credit_card").value;
+        let regExp = /\d{4} \d{4} \d{4} \d{4}/;
+
+        let test = regExp.test(card);
+
+        if (!test || card.length == 0) {
+          document.getElementById("errorMessage").innerHTML = 
+            "Please enter card number with the following format: 1234 1234 1234 1234.";
+          document.getElementById("credit_card").focus();
+          document.getElementById("credit_card").style.backgroundColor = "salmon";
+        } else {
+          document.getElementById("errorMessage").innerHTML = "<br>";
+          document.getElementById("credit_card").style.backgroundColor = "white";
+        }
+      }
+
+      // Function to check card exp date
+
+      function checkDate() {
+        let exp_date = document.getElementById("exp_date").value;
+        let regExp = /\d{2}\/\d{4}/;
+
+        let test = regExp.test(exp_date);
+
+        if (!test || exp_date.length == 0) {
+          document.getElementById("errorMessage").innerHTML = 
+            "Please enter expiration date with the following format: 01/2022";
+          document.getElementById("exp_date").focus();
+          document.getElementById("exp_date").style.backgroundColor = "salmon";
+        } else {
+          document.getElementById("errorMessage").innerHTML = "<br>";
+          document.getElementById("exp_date").style.backgroundColor = "white";
+        }
+      }
+
+      // Function to calculate order total
+
+      function calculate() {
+        item_0 = document.getElementById("item_0");
+        item_1 = document.getElementById("item_1");
+        item_2 = document.getElementById("item_2");
+        item_3 = document.getElementById("item_3");
+
+        let total = 0;
+
+        if (item_0.checked) {
+          total = total + 1000;
+        }
+        if (item_1.checked) {
+          total = total + 18000;
+        }
+        if (item_2.checked) {
+          total = total + 14000;
+        }
+        if (item_3.checked) {
+          total = total + 50000;
+        }
+
+        document.getElementById("total").innerHTML = total;
+      }
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Dallin Suggs">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ajax Requests</title>
+    
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+  </head>
+
+  <body>
+    <header>
+
+      <div class="topnav">
+        <h1>Ajax Requests</h1>
+      </div>
+
+    </header>
+    
+    <!--Country selector which displays city populations-->
+
+    <div class="main">
+      <h2>Please select a country to view city population statistics</h2>
+      <form> 
+        <select name="country" onchange="showPopulation(this.value)">
+          <option value="">Select a country:</option>
+          <option value="USA">United States of America</option>
+          <option value="Mexico">Mexico</option>
+          <option value="Russia">Russia</option>
+          <option value="Canada">Canada</option>
+        </select>
+      </form>
+      <br>
+      <div id="population">City population will be displayed here.</div>
+    </div>
+
+
+    <!--json file retreiver, displays a table-->
+    
+    <div class="main">
+      <h2>The JSON Object</h2>
+      <p id="errorMessage"><br></p>
+      <form>
+        <label for="json">Enter a json file:</label>
+        <input type="text" id="json" name="json" value="json.txt"><br><br>
+        <button type="button" onclick="loadDoc(json.value)">Display JSON</button>
+        <br><br>
+        <table id="jsonTable"></table>
+      </form>
+    </div>
+
+    <footer>
+      <p>Author: Dallin Suggs</p>
+      <p><a href="mailto:dallin.suggs@gmail.com">dallin.suggs@gmail.com</a></p>
+    </footer>
+    
+    <script>
+      function showPopulation(str) {
+        if (str == "") {
+          document.getElementById("population").innerHTML = "";
+          return;
+        }
+        const xhttp = new XMLHttpRequest();
+        xhttp.onload = function() {
+          document.getElementById("population").innerHTML = this.responseText;
+        }
+
+        if (str == "USA") {
+          xhttp.open("GET", "usa.txt");
+        } else if (str == "Mexico") {
+          xhttp.open("GET", "mexico.txt");
+        } else if (str == "Russia") {
+          xhttp.open("GET", "russia.txt");
+        } else if (str == "Canada") {
+          xhttp.open("GET", "canada.txt");
+        }
+        
+        xhttp.send();
+      }
+
+      //JSON table code
+      function loadDoc(str) {
+        const xhttp = new XMLHttpRequest();
+        xhttp.onload = function() {
+          const text = xhttp.responseText;
+          if (xhttp.status === 200) {
+            let students = JSON.parse(text)["students"];
+            document.getElementById("errorMessage").innerHTML = "<br>";
+            myFunction(students);
+          } else {
+            document.getElementById("errorMessage").innerHTML = "File could not be located.";
+            document.getElementById("jsonTable").innerHTML = "";
+          }  
+        }
+        xhttp.open("GET", str);
+        xhttp.send();
+      }
+
+      function myFunction(students) {
+        let table="<tr><th>First Name</th><th>Last Name</th><th>Address</th><th>Major</th><th>GPA</th></tr>";
+        for (let i in students) { 
+          table += "<tr><td>" +
+          students[i]["first"] +
+          "</td><td>" +
+          students[i].last +
+          "</td><td>" +
+          students[i].address.city + ", " + students[i].address.state + " " + students[i].address.zip +
+          "</td><td>" +
+          students[i].major +
+          "</td><td>" +
+          students[i].gpa +
+          "</td></tr>";
+        }
+        document.getElementById("jsonTable").innerHTML = table;
+      }
+
+      </script>
+  </body>
+</html>

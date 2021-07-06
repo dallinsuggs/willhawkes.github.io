@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Dallin Suggs">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Directory Listing</title>
+    
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+  </head>
+  <body onload="ajaxRequest()" id="body">
+
+
+    <div class="main">
+      <h2>Directory Listing:</h2>
+
+      <table id="jsonTable"></table>
+      <p id="p"></p>
+
+    </div>
+
+    <script>
+      function ajaxRequest() {
+        const xhttp = new XMLHttpRequest();
+        xhttp.onload = function() {
+          javaObj = JSON.parse(this.responseText);
+          myFunction(javaObj);
+        }
+        xhttp.open("GET", "assign10.php");
+        xhttp.send();
+      }
+  
+      function myFunction(javaObj) {
+        let table="<tr><th>File Name</th><th>File Type</th><th>CWD</th><th>Action</th></tr>";
+        for (let i in javaObj) { 
+          table += "<tr><td>" +
+          javaObj[i]["fileName"] +
+          "</td><td>" +
+          javaObj[i]["fileType"] +
+          "</td><td>" +
+          javaObj[i]["cwd"] +
+          "</td><td>";
+  
+          let str = "Click to View";
+          
+          let fileLink = javaObj[i].fileName;
+  
+          let a = str.link(fileLink);
+  
+          table += a +
+          "</td></tr>";
+        }
+        document.getElementById("jsonTable").innerHTML = table;
+      }
+    </script>
+    
+  </body>
+</html>

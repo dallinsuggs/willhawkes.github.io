@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dallin Suggs' Home Page</title>
+  <style> /* #0 */
+    body {
+      font-size:12px;
+      background-color:limegreen;
+      color:seashell;
+    }
+    h1, h2, h3 {
+      font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      text-align:center;
+    }
+    blockquote {
+      font-family:'Times New Roman', Times, serif;
+    }
+    img {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    table, th, td {
+      border: 1px solid seashell;
+      border-collapse: collapse;
+    }
+    div {
+      text-align:center;
+    }
+    form {
+      background-color: cornflowerblue;
+      padding: 24px;
+      border-style: solid;
+      border-width: 8px;
+      border-radius: 10px;
+      border-color:seashell;
+    }
+    p {
+      font-family:'Times New Roman', Times, serif;
+    }
+  </style>
+  <style> /* #1 */
+    body {
+      font-size:18px;
+      background-color:peachpuff;
+      color:orangered;
+    }
+    h1, h2, h3 {
+      text-align: left
+    }
+    div {
+      text-align:left;
+    }
+    blockquote {
+      line-height:32px
+    }
+    form {
+      background-color:seashell;
+      padding: 34px;
+      border-style: solid;
+      border-width: 6px;
+      border-color:orangered;
+    }
+
+  </style>
+  <style> /* #2 */
+    body {
+      font-size:24px;
+      background-color:snow;
+      color:orangered;
+    }
+    h1, h2, h3 {
+      text-align: center;
+      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+    }
+    div {
+      text-align:center;
+    }
+    blockquote {
+      font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    }
+    form {
+      background-color:seashell;
+      padding: 34px;
+      border-style: dashed;
+      border-width: 8px;
+      border-radius: 10px;
+      border-color:orangered;
+      margin: 24px;
+    }
+    table, th, td {
+      border: 2px solid darkorchid;
+      border-collapse: collapse;
+    }
+    p {
+      line-height: 50px;
+      font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    }
+
+  </style>
+  <link rel="stylesheet" href="style3.css">
+  <link rel="stylesheet" href="style4.css">
+  <link rel="stylesheet" href="style5.css">
+</head>
+<body onload="applyStyle(0)">
+
+  <header>
+    <h1>Welcome to Dallin Suggs' Home Page</h1>
+
+    <div>    
+      <a href="../index.html">CS213 Assignments</a>
+    </div>
+  </header>
+
+  <hr>
+
+  <div id="menuBar">
+    <p>Choose a stylesheet
+      <a href="#" onclick="applyStyle(0)">Stylesheet 1</a>,
+      <a href="#" onclick="applyStyle(1)">Stylesheet 2</a>,
+      <a href="#" onclick="applyStyle(2)">Stylesheet 3</a>,
+      <a href="#" onclick="applyStyle(3)">Stylesheet 4</a>,
+      <a href="#" onclick="applyStyle(4)">Stylesheet 5</a>,
+      <a href="#" onclick="applyStyle(5)">Stylesheet 6</a>,
+      <a href="#" onclick="disableStyles()">No stylesheet</a>.
+    </p>
+  </div> <!-- menuBar -->
+
+  <hr>
+
+  <div>
+    <p><b>Name:</b> Dallin<br>
+      <b>Hometown:</b> Sacramento, CA<br><b>Major:</b> Computer Science</p>
+    
+    <blockquote cite="https://www.goodreads.com/author/quotes/656983.J_R_R_Tolkien" >
+      “All we have to decide is what to do with the time that is given us.”
+      ― J.R.R. Tolkien, The Fellowship of the Ring
+    </blockquote>
+
+    <img src="me.jpg" alt="a picture of me">
+  </div>
+
+  <div>
+
+    <hr>
+
+    <h2>
+      About me:
+    </h2>
+
+    <p>
+      My name is Dallin Suggs, and I grew up in Sacramento, California. I studied at home (homeschool)
+      and had plenty of time to involve myself with extracurricular activities such as exploring by the river,
+      learning parkour, writing fantasy novels, and even coding basic adventure games with my older brother. I am
+      the fifth of six children. I enjoy both the films and the books of <i>The Hobbit</i> and <i>The Lord of the 
+      Rings</i>. Since leaving home, I have served a mission in Hungary, heard about a girl from there who is now 
+      my wife, and we have a beautiful little girl (6 months) named Elanor.
+    </p>
+
+    <hr>
+
+  </div>
+  
+  <div>
+    <table style="width:100%">
+      <tr>
+        <th>Course #</th>
+        <th>Course Description</th>
+        <th>Section #</th>
+        <th>Class Time</th>
+        <th>Class Location</th>
+      </tr>
+      <tr>
+        <td>ENG301</td>
+        <td>A college-level course in research and writing</td>
+        <td>N/A</td>
+        <td>Monday through Saturday</td>
+        <td>ONLINE</td>
+      </tr>
+      <tr>
+        <td>GESCI205</td>
+        <td>An introductory dive into DNA and genetics</td>
+        <td>N/A</td>
+        <td>Monday through Saturday</td>
+        <td>ONLINE</td>
+      </tr>
+      <tr>
+        <td>REL255C</td>
+        <td>A course focused on the Restoration of the Gospel and the Articles of Faith</td>
+        <td>N/A</td>
+        <td>Monday through Saturday</td>
+        <td>ONLINE</td>
+      </tr>
+      <tr>
+        <td>CIT352</td>
+        <td>An introduction to operating systems and how they work</td>
+        <td>N/A</td>
+        <td>Monday through Saturday</td>
+        <td>ONLINE</td>
+      </tr>
+      <tr>
+        <td>CS213</td>
+        <td>A college-level course in web development</td>
+        <td>N/A</td>
+        <td>Monday through Saturday</td>
+        <td>ONLINE</td>
+      </tr>
+    </table>
+  </div>
+
+  <hr>
+
+  <div>
+    <h3>
+      Links:
+    </h3>
+    <a href="https://www.byui.edu/" target="_blank">BYU Idaho Website</a><br>
+    <a href="https://suggsgames.weebly.com/" target="_blank">Homemade 2D Adventure Games</a><br>
+    <h3>My latest video on my Hungarian YouTube Channel:</h3>
+    <a href="https://www.youtube.com/watch?v=H25ChZuUCaM" target="_blank"><img src="thumb.png" alt="My latest video" 
+      style="width:576px;height:342px;"></a>
+  </div>
+
+  <hr>
+
+  <div style="text-align:left;">
+    <form>
+      <input type="text" id="fname" name="fname" placeholder="First name"><br>
+      <input type="text" id="lname" name="lname" placeholder="Last name"><br><br>
+
+      <input type="radio" id="male" name="gender" value="male">
+      <label for="male">Male</label><br>
+      <input type="radio" id="female" name="gender" value="female">
+      <label for="female">Female</label><br>
+      <input type="radio" id="other" name="gender" value="other">
+      <label for="other">Other</label><br><br>
+
+      <input type="checkbox" id="books" name="books" value="Books">
+      <label for="books"> I like books </label><br>
+      <input type="checkbox" id="movies" name="movies" value="Movies">
+      <label for="movies"> I like movies </label><br>
+      <input type="checkbox" id="videogames" name="videogames" value="Videogames">
+      <label for="videogames"> I like video games </label><br><br>
+
+      <select name="inquiry" id="inquiry">
+        <option value="business">Business inquiry</option>
+        <option value="personal">Personal question</option>
+        <option value="other">Other</option>
+      </select><br><br>
+
+      <textarea id="question" name="question" rows="4" cols="50" placeholder="Type a question..."></textarea><br>
+      <input type="submit" value="Submit">
+      <input type="reset">
+    </form>
+  </div>
+
+  <hr>
+
+  <footer>
+    <p>Author: Dallin Suggs</p>
+    <p><a href="mailto:dallin.suggs@gmail.com">dallin.suggs@gmail.com</a></p>
+  </footer>
+
+  <script>
+    <!-- DISABLE STYLES: This function turns off the four stylesheets -->
+    function disableStyles() 
+  {
+    document.styleSheets[0].disabled = true;
+    document.styleSheets[1].disabled = true;
+    document.styleSheets[2].disabled = true;
+    document.styleSheets[3].disabled = true;
+    document.styleSheets[4].disabled = true;
+    document.styleSheets[5].disabled = true;
+  }
+  <!-- APPLY STYLES: This function turns off all four stylesheets, then turns one back on -->
+  function applyStyle(i)
+  {
+    disableStyles();
+    document.styleSheets[i].disabled = false;
+  }
+  </script>
+</body>
+</html>

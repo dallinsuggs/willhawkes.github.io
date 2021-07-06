@@ -1,0 +1,40 @@
+body {
+  font-size:20px;
+  background-color:lightskyblue;
+  color:red;
+}
+a {
+  color:tomato;
+}
+a:hover {
+  color:white;
+}
+h1, h2, h3 {
+  text-align: center;
+  font-family:'Courier New', Courier, monospace;
+}
+div {
+  text-align:center;
+}
+blockquote {
+  font-family:monospace;
+  padding:-12px;
+}
+form {
+  background-color:lightskyblue;
+  padding: 34px;
+  border-style: solid;
+  border-width: 8px;
+  border-radius: 10px;
+  border-color:red;
+  margin: 50px;
+}
+table, th, td {
+  border: 2px solid red;
+  border-collapse:inherit;
+}
+p {
+  line-height: 24px;
+  font-family:monospace;
+  border-style:solid;
+}

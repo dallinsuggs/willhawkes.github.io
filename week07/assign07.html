@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Flip University Homepage">
+    <meta name="keywords" content="flips, university, education, art, athletics, academics">
+    <meta name="author" content="Dallin Suggs">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Loan Calculator</title>
+    
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+  </head>
+
+  <body>
+    <header>
+
+      <div class="topnav">
+        <h1>Loan Calculator</h1>
+      </div>
+
+    </header>
+    
+    <!--Our main content, the form to calculate monthly payments-->
+
+    <div class="main">
+      <h1>Enter the values to calculate a monthly payment:</h1>
+      <p id="errorMessage"><br></p>
+      <form id="loanCalculator">
+        <label for="apr">APR (in percent):</label><br>
+        <input onblur="checkApr()" type="number" id="apr" name="apr" min="0.00" max="25.00" step="0.01" 
+        placeholder="0-25%" required><span>%</span><br><br>
+        <label for="loanTerm">Loan Term:</label><br>
+        <input onblur="checkLoanterm()" type="number" id="loanTerm" name="loanTerm" min="0.00" max="40.00" 
+        placeholder="0-40 years" required><span> years</span><br><br>
+        <label for="loanAmount">Loan Amount:</label><br>
+        <input onblur="checkLoanamount()" type="number" id="loanAmount" name="loanAmount" min="0.00" 
+        placeholder="0+ dollars" required><span>$</span><br><br>
+        <button type="button" onclick="calculate()">Calculate</button>
+        <input onclick="resetMessages()" type="reset">
+        <p>Monthly Payment: <span id="payment"></span></p>
+      </form> 
+    </div>
+
+    <footer>
+      <p>Author: Dallin Suggs</p>
+      <p><a href="mailto:dallin.suggs@gmail.com">dallin.suggs@gmail.com</a></p>
+    </footer>
+    
+    <script>
+
+      // Function to reset error message and payment when the reset button is pressed
+
+      function resetMessages() {
+        document.getElementById("errorMessage").innerHTML = "<br>";
+        document.getElementById("payment").innerHTML = "";
+      }
+
+      // Functions to check apr, loanAmount and loanTerm individually when onblur occurs
+
+      // Check APR
+
+      function checkApr() {
+        let apr = parseFloat(document.getElementById("apr").value / 100);
+        
+        if (apr > .25 || apr < 0 || document.getElementById("apr").value.length == 0) {
+          document.getElementById("errorMessage").innerHTML = "Please enter a valid APR (0 - 25%).";
+          document.getElementById("apr").focus();
+          document.getElementById("payment").innerHTML = "";
+        } else {
+          document.getElementById("errorMessage").innerHTML = "<br>";
+        }
+      }
+
+      // Check loan term
+
+      function checkLoanterm() {
+        let loanTerm = parseFloat(document.getElementById("loanTerm").value);
+
+        if (loanTerm > 40 || apr < 0 || document.getElementById("loanTerm").value.length == 0) {
+          document.getElementById("errorMessage").innerHTML = "Please enter a valid loan term (0-40 years).";
+          document.getElementById("loanTerm").focus();
+          document.getElementById("payment").innerHTML = "";
+        } else {
+          document.getElementById("errorMessage").innerHTML = "<br>";
+        }
+      }
+
+      // Check loan amount
+
+      function checkLoanamount() {
+        let loanAmount = parseFloat(document.getElementById("loanAmount").value);
+
+        if (loanAmount < 0 || document.getElementById("loanAmount").value.length == 0) {
+          document.getElementById("errorMessage").innerHTML = "Please enter a valid loan amount (0 or greater dollars).";
+          document.getElementById("loanAmount").focus();
+          document.getElementById("payment").innerHTML = "";
+        } else {
+          document.getElementById("errorMessage").innerHTML = "<br>";
+        }
+      }
+
+      // Function to calculate monthly payment amount, given correct input
+
+      function calculate() {
+        // INPUT
+        let apr = parseFloat(document.getElementById("apr").value / 100);
+        let loanTerm = parseFloat(document.getElementById("loanTerm").value);
+        let loanAmount = parseFloat(document.getElementById("loanAmount").value);
+        
+        if (apr >= 0 && apr <= .25 && loanTerm >= 0 && loanTerm <= 40 && loanAmount >= 0) {
+          
+          // PROCESSING
+
+          let r = apr / 12;
+          let n = 12 * loanTerm;
+
+          // Equation to get result
+
+          let result = (loanAmount * r * Math.pow((1 + r), n)) / (Math.pow((1+r), n) - 1)
+
+          // payment
+          document.getElementById("errorMessage").innerHTML = "<br>";
+          document.getElementById("payment").innerHTML = result.toFixed(2);
+        } else {
+          // Throw error if input is invalid
+          document.getElementById("errorMessage").innerHTML = "Please check input and try again.";
+          document.getElementById("payment").innerHTML = "";
+        }
+      }
+    </script>
+  </body>
+</html>

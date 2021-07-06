@@ -1,0 +1,142 @@
+/*default is small media*/
+
+/*Body and other basic css*/
+body {
+  color: black;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+}
+
+h1, h2, h3 {
+  color: orchid;
+  font-family: 'Times New Roman', Times, serif;
+  text-align: center;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+hr {
+  border: 3px solid orchid;
+  border-radius: 3px;
+}
+
+#errorMessage {
+  color: crimson;
+}
+
+/* Add a black background color to the top navigation */
+.topnav {
+  display: flex;
+  flex-direction: column;
+  background-color: skyblue;
+  flex-wrap: nowrap;
+  justify-content: center;
+  justify-items: center;
+  margin-top: 1rem;
+  align-items: center;    
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Specify flex container for main content */
+
+.main {
+  flex: 4;
+  background-color: white;
+  padding: 20px;
+}
+
+/* Set footer specifications */
+footer {
+  display: flex;
+  flex-direction: column;
+  background-color: skyblue;
+  flex-wrap: nowrap;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;    
+  margin-left: auto;
+  margin-right: auto;
+}
+
+footer p {
+  padding: 8px 8px;
+}
+
+/* medium devices */
+@media only screen and (min-width : 600px) {
+  .topnav {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  hr {
+    border: 6px solid orchid;
+    border-radius: 5px;
+  }
+
+  footer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .topnav a, footer p {
+    padding: 14px 14px;
+  }
+
+  .row {  
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin-right: 3rem;
+    margin-left: 3rem;
+  }
+
+  .imgcolumn {
+    flex: 45%;
+    max-width: 45%;
+  }
+}
+
+/* large devices */
+@media only screen and (min-width: 1200px) {
+  .topnav {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+
+  hr {
+    border: 6px solid orchid;
+    border-radius: 5px;
+  }
+
+  footer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .topnav a, footer p {
+    padding: 14px 14px;
+  }
+
+  .row {  
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin-right: 10rem;
+    margin-left: 10rem;
+  }
+
+  .imgcolumn {
+    flex: 30%;
+    max-width: 30%;
+  }
+}

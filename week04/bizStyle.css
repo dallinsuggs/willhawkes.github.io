@@ -1,0 +1,61 @@
+body {
+  background-color: bisque;
+}
+
+#logo {
+  width:100px;
+  height:121px;
+}
+
+h1 {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  background-color: saddlebrown;
+  color: azure;
+  border-style: groove;
+  border-color: lightskyblue;
+  border-width: 18px;
+  padding: 90px;
+  font-size: 60px;
+}
+
+h3 {
+  font-family: 'Times New Roman', Times, serif;
+  background-color: saddlebrown;
+  color: azure;
+  border-style: groove;
+  border-color: lightskyblue;
+  border-width: 10px;
+}
+
+p {
+  font-family: 'Times New Roman', Times, serif;
+}
+
+a:hover {
+  color: tomato;
+}
+
+.center {
+  text-align: center;
+}
+
+ul {
+  border-style:solid;
+  border-radius: 5px;
+  border-color: saddlebrown;
+}
+
+footer {
+  background-color: skyblue;
+  color: saddlebrown;
+  border-style: solid;
+  border-radius: 10px;
+  border-color: saddlebrown;
+  padding: 40px;
+  margin: 25px;
+}
+
+hr {
+  border: 3px solid saddlebrown;
+  border-radius: 5px;
+}
