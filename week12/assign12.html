@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Dallin Suggs">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mileage Calculator</title>
+    
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+  </head>
+
+  <body>
+    <header>
+
+      <div class="topnav">
+        <h1>Mileage Calculator</h1>
+      </div>
+
+    </header>
+    
+    <!--Our main content, the form to calculate monthly payments-->
+
+    <div class="main">
+      <h1>Please enter information here to calculate mileage</h1>
+      <p id="errorMessage"><br></p>
+
+      <form id="mileageCalculator">
+
+        <!--startCity-->
+
+        <label for="startCity">Starting city:</label><br>
+        <input onblur="checkInput('startCity')" type="text" id="startCity" name="startCity" 
+          placeholder="Las Vegas" required><br><br>
+
+        <!--startState-->
+
+        <label for="startState">Starting state abbreviation:</label><br>
+        <input onblur="checkInput('startState')" type="text" id="startState" name="startState" 
+          placeholder="NV" maxlength="2" required><br><br>
+
+        <!--endCity-->
+
+        <label for="endCity">Ending city:</label><br>
+        <input onblur="checkInput('endCity')" type="text" id="endCity" name="endCity" 
+          placeholder="Little Rock" required><br><br>
+
+        <!--endState-->
+
+        <label for="endState">Ending state abbreviation:</label><br>
+        <input onblur="checkInput('endState')" type="text" id="endState" name="endState" 
+          placeholder="AR" maxlength="2" required><br><br>
+
+        <!--submit buttons-->
+
+        <input onclick="calculate(startCity.value, startState.value, endCity.value, endState.value)" type="button" name="calculateButton" value="Calculate">
+        <input onclick="resetMessages()" type="reset" name="reset">
+        
+      </form> 
+    </div>
+
+    <table id="jsonTable"></table>
+
+    <br>
+
+    <footer>
+      <p>Author: Dallin Suggs</p>
+      <p><a href="mailto:dallin.suggs@gmail.com">dallin.suggs@gmail.com</a></p>
+    </footer>
+    
+    <script>
+
+      //reset message function
+
+      function resetMessages() {
+        document.getElementById("errorMessage").innerHTML = "<br>";
+        document.getElementById("jsonTable").innerHTML = "";
+        document.getElementById("startCity").focus();
+      }
+
+      //input checker
+
+      function checkInput(inputID) {
+        let userInput = document.getElementById(inputID).value;
+
+        if (inputID == "startState" || inputID == "endState"){
+          if (userInput.length != 2) {
+            document.getElementById("errorMessage").innerHTML = "Please enter state as 2-letter abbreviation.";
+            document.getElementById(inputID).focus();
+            document.getElementById(inputID).style.backgroundColor = "salmon";
+          } else {
+            document.getElementById("errorMessage").innerHTML = "<br>";
+            document.getElementById(inputID).style.backgroundColor = "white";
+          }
+        } else if (inputID == "startCity" || inputID == "endCity"){
+          if (userInput.length == 0) {
+            document.getElementById("errorMessage").innerHTML = "Please fill out the highlighted field(s).";
+            document.getElementById(inputID).focus();
+            document.getElementById(inputID).style.backgroundColor = "salmon";
+          } else {
+            document.getElementById("errorMessage").innerHTML = "<br>";
+            document.getElementById(inputID).style.backgroundColor = "white";
+          }
+        }
+      }
+
+      //calculate function
+
+      function calculate(startCity, startState, endCity, endState) {
+
+        const xhttp = new XMLHttpRequest();
+        xhttp.onload = function() {
+          const text = xhttp.responseText;
+          if (xhttp.status === 200) {
+            let mileage = JSON.parse(text);
+            document.getElementById("errorMessage").innerHTML = "<br>";
+            myFunction(mileage.trip);
+          }
+        }
+        xhttp.open("GET", "/cgi-bin/cs213/mileageAjaxJSON?startCity=" + startCity + "&startState=" + startState +
+          "&endCity=" + endCity + "&endState=" + endState);
+        
+        xhttp.send();
+      }
+
+      //function to create table
+
+      function myFunction(mileage) {
+        let table="<tr><th>Starting City</th><th>Starting State</th><th>Ending City</th><th>Ending State</th><th>Miles</th><th>Travel Mode</th></tr>";
+        table += "<tr><td>" +
+          mileage.startcity +
+          "</td><td>" +
+          mileage.startstate +
+          "</td><td>" +
+          mileage.endcity +
+          "</td><td>" +
+          mileage.endstate +
+          "</td><td>" +
+          mileage.miles+
+          "</td><td>";
+        if (mileage.tmode.length > 0) {
+          for (i in mileage.tmode) {
+            table += mileage.tmode[i];
+            if (i < mileage.tmode.length - 1) {
+              table += ", ";
+            }
+          }
+        }
+        table += "</td></tr>";
+
+        document.getElementById("jsonTable").innerHTML = table;
+      }
+
+    </script>
+  </body>
+</html>

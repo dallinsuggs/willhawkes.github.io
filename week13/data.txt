@@ -1,0 +1,1 @@
+{"students":[{"first_name":"John","last_name":"Do","student_id":"123456","partner":["Mary","Lane","654321"],"skill":"Intermediate","instrument":"Piano","location":"Other","room":"123","time_slot":"8:00"},{"first_name":"William","last_name":"Johnson","student_id":"123456","partner":[],"skill":"Intermediate","instrument":"Voice","location":"Snow","room":"123","time_slot":"9:45"}]}

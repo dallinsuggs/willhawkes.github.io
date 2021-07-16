@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Dallin Suggs">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Register Piano Students</title>
+    
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+  </head>
+
+  <body onload="showOptions(performance.value) ; showData()">
+    <header>
+
+      <div class="topnav">
+        <h1>Register Piano Students</h1>
+      </div>
+
+    </header>
+    
+    <!--Our main content, the form to calculate monthly payments-->
+
+    <div class="main">
+      <h1>Please fill out form to register:</h1>
+      <p id="errorMessage"><br></p>
+
+      <form id="onlineStore" method="get">
+
+        <!--Type of performance-->
+
+        <select name="performance" id="performance" onchange="showOptions(this.value); checkSelect(this)" required>
+          <option value="">Choose your performance type:</option>
+          <option value="Solo">Solo</option>
+          <option value="Duet">Duet</option>
+          <option value="Concerto">Concerto</option>
+        </select><br><br>
+
+        <!--First name student 1-->
+
+        <label for="first_name">First Name:</label><br>
+        <input onblur="checkInput('first_name')" type="text" id="first_name" name="first_name" 
+          placeholder="John" required><br><br>
+
+        <!--Last name student 1-->
+
+        <label for="last_name">Last Name:</label><br>
+        <input onblur="checkInput('last_name')" type="text" id="last_name" name="last_name" 
+          placeholder="Doe" required><br><br>
+
+        <!--Student 1 ID-->
+
+        <label for="student_id">Student ID:</label><br>
+        <input onblur="checkInput('student_id')" type="text" id="student_id" name="student_id" 
+          placeholder="123456" required><br><br>
+
+        <!--BEGIN HIDDEN OPTION ####################################-->
+
+        <!--First name student 2-->
+
+        <label id="firstLabel" for="first_name_2">Duet Partner First Name:</label><br>
+        <input onblur="checkInput('first_name_2')" type="text" id="first_name_2" name="first_name_2" 
+          placeholder="John"><br><br>
+
+        <!--Last name student 2-->
+
+        <label id="lastLabel" for="last_name_2">Duet Partner Last Name:</label><br>
+        <input onblur="checkInput('last_name_2')" type="text" id="last_name_2" name="last_name_2" 
+          placeholder="Doe"><br><br>
+
+        <!--Student 2 ID-->
+
+        <label id="idLabel" for="student_id_2">Duet Partner Student ID:</label><br>
+        <input onblur="checkInput('student_id_2')" type="text" id="student_id_2" name="student_id_2" 
+          placeholder="123456"><br><br>
+
+        <!--END HIDDEN OPTION #####################################-->
+
+        <!--Select Skill Level-->
+
+        <select name="skill" id="skill" onchange="checkSelect(this)" required>
+          <option value="">Choose your skill level:</option>
+          <option value="Beginner">Beginner</option>
+          <option value="Intermediate">Intermediate</option>
+          <option value="Pre-advanced">Pre-advanced</option>
+          <option value="Advanced">Advanced</option>
+        </select><br><br>
+
+        <!--Select Instrument Type-->
+
+        <select name="instrument" id="instrument" onchange="checkSelect(this)" required>
+          <option value="">Choose your instrument type:</option>
+          <option value="Piano">Piano</option>
+          <option value="Voice">Voice</option>
+          <option value="String">String</option>
+          <option value="Organ">Organ</option>
+          <option value="Other">Other</option>
+        </select><br><br>
+
+        <!--Location-->
+
+        <select name="location" id="building" onchange="checkSelect(this)" required>
+          <option value="">Choose your building:</option>
+          <option value="Austin">Austin</option>
+          <option value="Snow">Snow</option>
+          <option value="Other">Other</option>
+        </select><br><br>
+
+        <!--Room number-->
+
+        <label for="room">Room Number:</label><br>
+        <input onblur="checkRoom('room')" type="text" id="room" name="room" 
+          placeholder="213" required><br><br>
+
+        <!--Time slot-->
+
+        <select name="location" id="time_slot" onchange="checkSelect(this)" required>
+          <option value="">Select a time slot:</option>
+          <option value="8:00">8:00</option>
+          <option value="9:45">9:45</option>
+          <option value="11:00">11:00</option>
+          <option value="12:45">12:45</option>
+          <option value="14:00">14:00</option>
+        </select><br><br>
+
+        <!--Submit and Reset buttons-->
+
+        <input type="button" id="register" onclick="update_db(performance.value);" name="register" value="Register">
+        <input type="reset" id="reset" onclick="resetMessages()" value="Clear" name="clear">
+        
+      </form> 
+    </div>
+
+    <table id="jsonTable"></table>
+
+    <br>
+    <br>
+
+    <footer>
+      <p>Author: Dallin Suggs</p>
+      <p><a href="mailto:dallin.suggs@gmail.com">dallin.suggs@gmail.com</a></p>
+    </footer>
+    
+    <script>
+
+      // Function to reset error message and payment when the reset button is pressed
+
+      function resetMessages() {
+        document.getElementById("errorMessage").innerHTML = "<br>";
+        document.getElementById("performance").focus();
+      }
+
+      // Check text inputs to make sure fields are not empty
+
+      function checkInput(inputID) {
+        let userInput = document.getElementById(inputID).value;
+        
+        if (userInput.length == 0) {
+          document.getElementById("errorMessage").innerHTML = "Please fill out the highlighted field(s).";
+          document.getElementById(inputID).focus();
+          document.getElementById(inputID).style.backgroundColor = "salmon";
+        } else {
+          document.getElementById("errorMessage").innerHTML = "<br>";
+          document.getElementById(inputID).style.backgroundColor = "white";
+        }
+      }
+
+      // Check selection dropdown
+
+      function checkSelect(selectID) {
+        if (selectID.value == "") {
+          document.getElementById("errorMessage").innerHTML = "Please select a valid option for each dropdown.";
+          document.getElementById(selectID).focus();
+        } else {
+          document.getElementById("errorMessage").innerHTML = "<br>";
+        }
+      }
+
+      // Check room number
+
+      function checkRoom(inputID) {
+        let userInput = document.getElementById(inputID).value;
+        
+        if (userInput.length == 0 || userInput < 1 || userInput > 999) {
+          document.getElementById("errorMessage").innerHTML = "Please provide a room number 1-999.";
+          document.getElementById(inputID).focus();
+          document.getElementById(inputID).style.backgroundColor = "salmon";
+        } else {
+          document.getElementById("errorMessage").innerHTML = "<br>";
+          document.getElementById(inputID).style.backgroundColor = "white";
+        }
+      }
+
+      // Show or hide secondary student options
+
+      function showOptions(typeID) {
+        if (typeID != "Duet") {
+          document.getElementById("first_name_2").style.display = "none";
+          document.getElementById("firstLabel").style.display = "none";
+          document.getElementById("first_name_2").required = false;
+          document.getElementById("last_name_2").style.display = "none";
+          document.getElementById("lastLabel").style.display = "none";
+          document.getElementById("last_name_2").required = false;
+          document.getElementById("student_id_2").style.display = "none";
+          document.getElementById("idLabel").style.display = "none";
+          document.getElementById("student_id_2").required = false;
+          document.getElementById("first_name_2").value = "";
+          document.getElementById("last_name_2").value = "";
+          document.getElementById("student_id_2").value = "";
+        } else {
+          document.getElementById("first_name_2").style.display = "inline";
+          document.getElementById("firstLabel").style.display = "inline";
+          document.getElementById("first_name_2").required = true;
+          document.getElementById("last_name_2").style.display = "inline";
+          document.getElementById("lastLabel").style.display = "inline";
+          document.getElementById("last_name_2").required = true;
+          document.getElementById("student_id_2").style.display = "inline";
+          document.getElementById("idLabel").style.display = "inline";
+          document.getElementById("student_id_2").required = true;
+        }
+      }
+
+      //Code for calling php file to update student json file
+
+      function update_db(performanceType) {
+        const xhttp = new XMLHttpRequest();
+        xhttp.onload = function() {
+          const text = xhttp.responseText;
+          document.getElementById("errorMessage").innerHTML = text;
+          showData();
+        }
+        if (performanceType != "Duet") {
+          xhttp.open("GET", "assign13.php?first_name=" + first_name.value + "&last_name=" + last_name.value +
+            "&student_id=" + student_id.value + "&skill=" + skill.value + "&instrument=" + instrument.value
+            + "&location=" + building.value + "&room=" + room.value + "&time_slot=" + time_slot.value);
+        } else {
+          xhttp.open("GET", "assign13.php?first_name=" + first_name.value + "&last_name=" + last_name.value +
+            "&student_id=" + student_id.value + "&first_name_2=" + first_name_2.value + "&last_name_2=" + last_name_2.value +
+            "&student_id_2=" + student_id_2.value + "&skill=" + skill.value + "&instrument=" + instrument.value
+            + "&location=" + building.value + "&room=" + room.value + "&time_slot=" + time_slot.value);
+        }
+        xhttp.send();
+      }
+
+      //Code for displaying student info ####################################################################
+
+      function showData() {
+        const xhttp = new XMLHttpRequest();
+        xhttp.onload = function() {
+          const text = xhttp.responseText;
+          let students = JSON.parse(text)["students"];
+          myFunction(students);
+        }
+        xhttp.open("GET", "data/data.txt");
+        xhttp.send();
+      }
+
+      function myFunction(students) {
+        let table="<tr><th>First Name</th><th>Last Name</th><th>Student ID</th><th>Partner</th><th>Skill</th><th>Instrument</th><th>Building</th><th>Room #</th><th>Time Slot</th></tr>";
+        for (let i in students) { 
+          table += "<tr><td>" +
+          students[i].first_name +
+          "</td><td>" +
+          students[i].last_name +
+          "</td><td>" +
+          students[i].student_id +
+          "</td><td>" +
+          students[i].partner.first_name_2 + " " + students[i].partner.last_name_2 + ", " + 
+          students[i].partner.student_id_2 +
+          "</td><td>" +
+          students[i].skill +
+          "</td><td>" +
+          students[i].instrument +
+          "</td><td>" +
+          students[i].location +
+          "</td><td>" +
+          students[i].room +
+          "</td><td>" +
+          students[i].time_slot +
+          "</td></tr>";
+        }
+        document.getElementById("jsonTable").innerHTML = table;
+      }
+
+    </script>
+  </body>
+</html>
